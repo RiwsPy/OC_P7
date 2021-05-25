@@ -1,10 +1,11 @@
 <!DOCTYPE html>
-<html id='all'>
+<html id='all' lang='fr'>
   <head>
     <meta charset="UTF-8" />
     <link href=" {{ url_for('static', filename='papy.css') }} " rel="stylesheet" type="text/css" />
     <title>PapyBot</title>
   </head>
+
   <body>
     <input id="questionBlock" type='text' size=50 placeholder="La question à Papy"></input>
     <input type='submit' onClick='return test(this)' value="Poser la question" id="questionButton"><span id="Test2">0</span></input>
@@ -12,4 +13,5 @@
     <ul id ="author"></ul>
     <script src=" {{url_for('static', filename='js/papy.js')}} "></script>
 </body>
+
 </html>

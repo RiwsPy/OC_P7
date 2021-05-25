@@ -1,8 +1,4 @@
-from flask import Flask
-
-def init():
-    print('ok')
-
+import app.views
 
 if __name__ == "__main__":
-    init()
+    app.views.init()
