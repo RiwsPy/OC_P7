@@ -9,4 +9,4 @@ def normalize(question):
     for word in re.split('\W+', question.lower()):
         if word and word not in fordib_words:
             normalize_question += word + ' '
-    return normalize_question
+    return normalize_question.strip()

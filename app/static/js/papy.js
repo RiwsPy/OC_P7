@@ -1,4 +1,7 @@
 let question = document.getElementById('questionBlock');
+let author = document.getElementById('author')
+let grandy = document.getElementById('grandy')
+let map = document.getElementById("map")
 
 function test(elt){
     /*info.innerText = question.value;
@@ -12,16 +15,24 @@ function test(elt){
     });
 
     fetch(request)
-    /*.then((resp) => resp.json())*/
-    /*.then(function(data) {
-        /*let li = document.createElement('li');
+    .then((resp) => resp.json())
+    .then(function(data) {
+        /*grandy.appendChild(document.createTextNode('Haha'));*/
+        let li = document.createElement('li');
         let span = document.createElement('span');
-        li.appendChild(span);
-        span.innerText = question.value;
-        ul.appendChild(li);
-        alert(question.value)
-        return {'data': question.value}
-    })*/
+        author.appendChild(li)
+        li.appendChild(span)
+        span.innerText = data.formatted_address + ' (' + data.lat + ', ' + data.lng + ')'
+        if ( map !== null ){
+            map.style['height'] = '200px';
+            initMap(data.lat, data.lng);}
+        /*return {'data': question.value}*/
+    })
     .catch(error => alert("Erreur : " + error));
 }
 
+function initMap(latitude, longitude) {
+    new google.maps.Map(map, {
+        center: {lat: latitude, lng: longitude},
+        zoom: 13});
+}

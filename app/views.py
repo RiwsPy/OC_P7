@@ -26,19 +26,19 @@ def api():
     # la recherche doit s'effectuer en appuyant sur entrée, non sur un bouton
     user_input = request.data.decode('utf-8')
 
-    lat, lng, formatted_address = googlemaps.init(normalize(user_input))
-    print(lat, lng)
-    if not lat:
-        return jsonify({'hum':1})
+    maps_info = googlemaps.GoogleMaps()
+    maps_info.req(normalize(user_input))
 
-    wiki_info = wikipedia.Wiki().req(lat, lng)
+    wiki_info = wikipedia.Wiki().req(maps_info.lat, maps_info.lng)
     print(wiki_info.url)
 
     return jsonify({
-        'lat': lat,
-        'lng': lng,
-        'formatted_address': formatted_address,
-        'wiki_url': wiki_info.url
+        'result': wiki_info.return_value,
+        'lat': maps_info.lat,
+        'lng': maps_info.lng,
+        'formatted_address': maps_info.formatted_address,
+        'wiki_url': wiki_info.url,
+        'blabla': wiki_info.info
         }) # + console.log
 
 @app.errorhandler(404)
