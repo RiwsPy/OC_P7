@@ -1,0 +1,30 @@
+
+#questionBlock
+{
+    display:inline-block;
+    position:relative;
+    left: 2%;
+}
+
+button
+{   
+    display: inline-block;
+    position:relative;
+    left: 2%;
+}
+
+#map
+{
+    height:0px;
+    left: 98%;
+    margin-bottom: 5px;
+}
+
+#responseBlock
+{
+    display: none;
+    position:relative;
+    text-align: right;
+    resize: none;
+    left: 98%;
+}

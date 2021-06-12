@@ -1,8 +1,11 @@
 <!DOCTYPE html>
-<html id='all' lang='fr'>
+<html id='all' lang='fr-fr'>
   <head>
     <meta charset="UTF-8" />
-    <link href=" {{ url_for('static', filename='papy.css') }} " rel="stylesheet" type="text/css" />
+    <!-- Bootstrap css -->
+    <link href=" {{ url_for('static', filename='css/bootstrap/bootstrap.min.css') }} " rel="stylesheet" type="text/css" />
+
+    <link href=" {{ url_for('static', filename='css/papy.css') }} " rel="stylesheet" type="text/css" />
     <title>PapyBot</title>
 
     <!-- GoogleMaps-->
@@ -10,20 +13,72 @@
   </head>
 
   <body>
-    <input id="questionBlock" type='text' size=50 placeholder="La question à Papy"></input>
-    <input type='submit' onClick='return test(this)' value="Poser la question" id="questionButton"></input>
-    <h1>Auteurs</h1>
-    <ul id ="author"></ul>
-    <p id="grandy"></p>
+    <section style="background-color: #66ccff;">
+    <div class="row">
+      <div class="col">
+        <div class="form-outline w-50" id="test_copy">
+          <label class="form-label" for="questionBlock">Question :</label>
+          <textarea
+            class="form-control"
+            type="text"
+            id="questionBlock"
+            name="questionBlock"
+            placeholder="La question à Papy"
+            autocomplete=off
+            autofocus
+            required
+            rows="4"
+          ></textarea>
+          <button
+            type="submit"
+            class="btn btn-success"
+            id="questionButton"
+            onClick='return test()'
+            >
+            GO
+            <img src="https://www.tutorialspoint.com/latest/inter-process-communication.png " />
+          </button>
 
-    <div id="map">
-      <!-- Map -->
+          <label for="responseBlock"></label>
+          <textarea
+            id="responseBlock"
+            type="text"
+            class="form-control"
+            name="responseBlock"
+            placeholder="La réponse de Papy"
+            readonly
+            rows="4"
+          ></textarea>
+          <div id="map">
+            <!-- Map -->
+          </div>
+        </div>
+      </div>
     </div>
+
+    <!--style="float:right;"
+    <input id="questionBlock" type='text' size=50 placeholder="La question à Papy"></input>
+    -->
+    <!--
+    <textarea class="form-control" onkeydown="return test(this)"></textarea>
+    -->
+    <!--<input type='submit' onClick='return test(this)' value="Poser la question" id="questionButton"></input>
+    -->
+
+    <footer>
+      
+    </footer>
+
+
     <script
+      id="GOOGLE_URL"
       src="https://maps.google.com/maps/api/js?key=AIzaSyDICnA0VqhMKNXJkwbZuWP26CMAedvYWVs&callback=initMap&libraries=&v=weekly"
       async
     ></script>
-    <script src=" {{url_for('static', filename='js/papy.js')}} "></script>
-</body>
+    <!-- Bootstrap JS -->
+    <script src=" {{ url_for('static', filename='js/bootstrap/bootstrap.min.js')}} "></script>
+    <script type="text/javascript" src=" {{url_for('static', filename='js/papy.js')}} "></script>
+  </body>
 
 </html>
+
