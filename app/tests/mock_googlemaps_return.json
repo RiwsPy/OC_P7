@@ -1,0 +1,61 @@
+{
+ "results": [
+  {
+   "address_components": [
+    {
+     "long_name": "Jordan",
+     "short_name": "JO",
+     "types": [
+      "country",
+      "political"
+     ]
+    },
+    {
+     "long_name": "Petra District",
+     "short_name": "Petra District",
+     "types": [
+      "administrative_area_level_2",
+      "political"
+     ]
+    },
+    {
+     "long_name": "Ma'an Governorate",
+     "short_name": "Ma'an Governorate",
+     "types": [
+      "administrative_area_level_1",
+      "political"
+     ]
+    }
+   ],
+   "formatted_address": "Jordan",
+   "geometry": {
+    "location": {
+     "lat": 30.3284544,
+     "lng": 35.4443622
+    },
+    "location_type": "GEOMETRIC_CENTER",
+    "viewport": {
+     "northeast": {
+      "lat": 30.3298033802915,
+      "lng": 35.4457111802915
+     },
+     "southwest": {
+      "lat": 30.3271054197085,
+      "lng": 35.4430132197085
+     }
+    }
+   },
+   "place_id": "ChIJcWA7cPFuARURkSKaZwj5mxk",
+   "plus_code": {
+    "compound_code": "8CHV+9P Uum Sayhoun, Jordan",
+    "global_code": "8G2Q8CHV+9P"
+   },
+   "types": [
+    "establishment",
+    "point_of_interest",
+    "tourist_attraction"
+   ]
+  }
+ ],
+ "status": "OK"
+}
