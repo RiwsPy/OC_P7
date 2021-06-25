@@ -1,8 +1,7 @@
 import requests
 import json
-from config import WIKI_URL, WIKI_SEARCH_URL, WIKI_DEFAULT_URL, \
-    ERROR_ERROR, ERROR_NO_RETURN, ERROR_RETURN_OK, ERROR_UNKNOWN_EVENT, \
-    ERROR_URL_ERROR, ERROR_COORD_ERROR
+from config import Wiki, Return
+    
 
 params = {
     'action': 'query', # extraction des données
@@ -17,37 +16,45 @@ params = {
 
 }
 
-class Wiki:
-    def __init__(self):
-        self.info = ''
-        self.url = WIKI_DEFAULT_URL
-        self.return_value = ERROR_NO_RETURN
+class Wikipedia:
+    def __init__(self) -> None:
+        self.data = ''
+        self.url = Wiki.DEFAULT_URL
+        self.return_value = Return.NO_RETURN
 
-    def req(self, lat, lng):
-        if not lat:
-            self.return_value = ERROR_COORD_ERROR
+    def req(self, lat: int, lng: int) -> object:
+        if not lat or not lng:
+            self.return_value = Return.COORD_ERROR
             return self
 
         params['ggscoord'] = f'{lat}|{lng}'
 
-        req = requests.get(WIKI_URL, params)
+        req = requests.get(Wiki.URL, params)
+        self.save_data(req)
+
+        return self
+
+    def save_data(self, req):
+        #with open('mock_wiki_return_ok.json', 'w') as file:
+        #    json.dump(json.loads(req.text), file, indent=1, ensure_ascii=False)
+
         if req.status_code == 200:
             response = json.loads(req.text)
             if response.get('query'):
                 # 'title' pour une info résumée
-                self.info = response['query']['pages'][0]['extract']
-                self.url += f"curid={response['query']['pages'][0]['pageid']}"
-                self.return_value = ERROR_RETURN_OK
-                print(self.info[:100])
-            elif response.get('batchcomplete') == True:
+                self.data = response['query']['pages'][0]['extract']
+                self.url = Wiki.SEARCH_URL + \
+                    f"curid={response['query']['pages'][0]['pageid']}"
+                self.return_value = Return.RETURN_OK
+                print(self.data[:100])
+            elif response.get('batchcomplete') is True:
                 print('Format correct, mais aucune information trouvée sur Wiki.')
             elif response.get('error'):
-                self.info += response['error']
-                self.return_value = ERROR_ERROR
+                self.data += response['error']
+                self.return_value = Return.DEFAULT_ERROR
             else:
-                self.return_value = ERROR_UNKNOWN_EVENT
+                self.return_value = Return.UNKNOWN_EVENT
                 print(response)
         else:
-            self.return_value = ERROR_URL_ERROR
+            self.return_value = Return.URL_ERROR
             print('Lien wiki invalide')
-        return self
