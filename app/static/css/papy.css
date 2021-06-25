@@ -6,25 +6,41 @@
     left: 2%;
 }
 
-button
+#questionButton
 {   
     display: inline-block;
     position:relative;
     left: 2%;
+    margin-bottom: 30px;
 }
 
 #map
 {
-    height:0px;
-    left: 98%;
+    display: none;
+    height:200px;
     margin-bottom: 5px;
+    left: 98%;
 }
 
-#responseBlock
+#response
 {
     display: none;
     position:relative;
     text-align: right;
     resize: none;
     left: 98%;
+    margin-bottom: 5px;
+}
+
+#wikiLink
+{
+    display: none;
+    position:relative;
+    left: 98%;
+}
+
+#tuc
+{
+    left:98%;
+    margin-bottom: 5px;
 }
