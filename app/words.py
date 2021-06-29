@@ -1,4 +1,4 @@
-STOP_WORDS = set([
+STOP_WORDS = {
     "a","abord","absolument","afin","ah","ai","aie","ailleurs",
     "ainsi","ait","allaient","allo","allons","allô","alors","anterieur",
     "anterieure","anterieures","apres","après","as","assez","attendu","au",
@@ -77,95 +77,104 @@ STOP_WORDS = set([
     "voici","voilà","vont","vos","votre","vous","vous-mêmes","vu","vé",
     "vôtre","vôtres","w","x","y","z","zut","à","â","ça","ès","étaient",
     "étais","était","étant","été","être","ô"
-    ])
+    }
 
-SKIP_WORDS = set([
-    "salut", "grandpy", "connais", "bonjour", "bonsoir", "papy", "bot", "pybot",
-    "dis", "adresse", "hey", "hi", "grandma", "indiquer", "trouver", "plaît"
-    ])
+SKIP_WORDS = {
+    "salut", "hello", "grandpy", "connais", "bonjour", "bonsoir", "papy", "bot", "pybot",
+    "dis", "adresse", "hey", "hi", "grandma", "indiquer", "trouver", "plait", "sais",
+    }
 
-NO_POSITION = "Je ne connais pas cet endroit, tu sais, malgré mon âge, je ne connais pas tout !"
+NO_POSITION = "Quoi ? Je n'ai pas compris, peux-tu répéter plus fort ?"
 NO_WIKI = "Oui, oui j'ai déjà entendu parlé de cet endroit mais ma mémoire n'est plus ce qu'elle était..."
 
+from random import choice
+class Sentence:
+    BEGIN = [
+        "Ha oui... Cela me rappelle le jour où c'est",
+        "Je crois pas que tu connaisses l'histoire de",
+        "Hoo... Je pourrais aussi bien te conter l'épopée de",
+        "Tu connais la dernière ? Il paraît que c'est",
+        "Fichtre, tout cela me rappelle l'époque où je vadrouillais avec",
+        "Sacrebleu, ça me fait penser à",
+        "Saperlipopette, j'y suis déjà allé avec",
+        "Cela fait une paye dis donc, t'ai-je raconté l'aventure avec",
+        "Rappelle moi de te raconter l'histoire incroyable de",
+    ]
 
-BEGIN_PHRASE = [
-    "Ha oui... Cela me rappelle le jour où ",
-    "Je crois pas que tu connaisses l'histoire de ",
-    "Hoo... Je pourrais aussi bien te conter l'épopée de ",
-    "Tu connais la dernière ? Il paraît que ",
-    "Fichtre, tout cela me rappelle l'époque où ",
-    "Sacrebleu, ça me fait penser à ",
-    "Saperlipopette, j'y suis déjà allé avec ",
-    "Cela fait une paye dis donc, ça se passait avec ",
-    "Rappelle moi de te raconter l'histoire incroyable de ",
-]
+    NICKNAME = [
+        "Mursul",
+        "Fil",
+        "Maxou",
+        "Mart",
+        "Bébert",
+        "Ulysse",
+        "Sasha",
+        "Eden",
+        "Scratchy",
+        "Missy",
+        "Barbe-blanche",
+        "Lyn",
+        "Leone",
+        "Piggy",
+        "Murphy",
+        "Rover",
+        "Al",
+        "Claude",
+        "Dominique",
+        "Lou",
+        "Ange",
+        "Charlie",
+    ]
 
-NAME = [
-    "Mursul",
-    "Fil",
-    "Maxou",
-    "Mart",
-    "Bébert",
-    "Ulysse",
-    "Sasha",
-    "Eden",
-    "Scratchy",
-    "Missy",
-    "Barbe-blanche",
-    "Lyn",
-    "Leone",
-    "Piggy",
-    "Murphy",
-    "Rover",
-    "Al",
-    "Claude",
-    "Dominique",
-    "Lou",
-    "Ange",
-    "Charlie",
+    JOB = [
+        "- le boulanger pas la factrice -",
+        "- la factrice pas le boulanger -",
+        "- le voisin du 78 un peu étrange -",
+        "- l'ancienne voisine un peu étrange -",
+        "- dont je n'arrive plus à me souvenir du visage -",
+        "- la 8ème personne la plus dingue que je n'ai jamais rencontré -",
+        "- personne ne la revu depuis la grande Dépression -",
+        "- un chat noir comme on n'en fait plus -",
+        "- tu l'as rencontré une fois quand tu étais enfant -",
+        "- le tigre domestique du 4ème -",
+        "- une éléphante de compagnie -",
+        "- un hamster tout mignon -",
+        "- ha ! j'en ris rien que d'y penser -",
+    ]
 
-]
+    VERB = [
+        "qui a conquis",
+        "qui a dressé",
+        "qui a pelé",
+        "qui a enfilé",
+        "qui a perdu",
+        "qui a grimpé",
+        "qui a découvert",
+        "qui a dévoré",
+        "qui a allumé",
+        "qui a lustré",
+    ]
 
-FUNCTION = [
-    "- le boulanger pas la factrice -",
-    "- la factrice pas le boulanger -",
-    "- le voisin du 78 un peu étrange -",
-    "- l'ancienne voisine un peu étrange -",
-    "- dont je n'arrive plus à me souvenir du visage -",
-    "- la 8ème personne la plus dingue que je n'ai jamais rencontré -",
-    "- personne ne la revu depuis la grande Dépression -",
-    "- un chat noir comme on n'en fait plus -",
-    "- tu l'as rencontré une fois quand tu étais enfant -",
-    "- le tigre domestique du 4ème -",
-    "- une éléphante de compagnie -",
-    "- un hamster tout mignon -",
-    "- ha ! j'en ris rien que d'y penser -",
-]
+    COMPLEMENT = [
+        "sa bague de fiançaille.",
+        "son os à ronger.",
+        "une chaîne de vélo.",
+        "la noirceur du coeur des Hommes.",
+        "au 7ème Ciel.",
+        "une salopette devant le Président.",
+        "un brasier ardent.",
+        "un slip usagé.",
+        "un extraterrestre.",
+        "un véritable trésor de pirate.",
+        "l'amour de toute une vie.",
+        "ses chaussures en direct.",
+    ]
 
-VERB = [
-    "qui a conquis",
-    "qui a dressé",
-    "qui a pelé",
-    "qui a enfilé",
-    "qui a perdu",
-    "qui a grimpé",
-    "qui a découvert",
-    "qui a dévoré",
-    "qui a allumé",
-    "qui a lustré",
-]
-
-COMPLEMENT = [
-    "sa bague de fiançaille.",
-    "son os à ronger.",
-    "une chaîne de vélo.",
-    "un slip sale.",
-    "la noiceur du coeur des Hommes.",
-    "au 7ème Ciel.",
-    "une salopette devant le Président."
-    "un brasier ardent.",
-    "un extraterrestre.",
-    "un véritable trésor de pirate.",
-    "l'amour de toute une vie.",
-    "ses chaussures en direct.",
-]
+    @classmethod
+    def create_random_sentence(cls):
+        return ' '.join((
+            choice(cls.BEGIN),
+            choice(cls.NICKNAME),
+            choice(cls.JOB),
+            choice(cls.VERB),
+            choice(cls.COMPLEMENT)))
