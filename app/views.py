@@ -10,7 +10,7 @@ from app import app
 
 def init():
     app.run()
-    app.config.from_object('config')
+    #app.config.from_object('config')
 
 @app.route('/')
 def papy():
