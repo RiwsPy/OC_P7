@@ -12,7 +12,8 @@ app.debug = True
 def init():
     app.run()
 
-@app.route('/papy/', methods={'GET'})
+
+@app.route('/')
 def papy():
     return render_template('papy.html')
 
