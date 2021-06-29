@@ -5,13 +5,12 @@ from app.parsers import normalize
 from app.words import Sentence, NO_POSITION, NO_WIKI
 from config import Wiki, Return
 from typing import Tuple
+from app import app
 
-app = Flask(__name__)
-app.debug = True
 
 def init():
     app.run()
-
+    app.config.from_object('config')
 
 @app.route('/')
 def papy():

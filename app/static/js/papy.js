@@ -21,7 +21,7 @@ function gdPy(){
     const url = 'http://127.0.0.1:5000/api/';
     document.getElementById("GOOGLE_URL").src =
     "https://maps.google.com/maps/api/js?key=AIzaSyDICnA0VqhMKNXJkwbZuWP26CMAedvYWVs&callback=initMap&libraries=&v=weekly"
-
+    
     let request = new Request(url, {
         method: 'POST',
         headers: new Headers(),
