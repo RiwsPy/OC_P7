@@ -1,4 +1,4 @@
-from app.words import STOP_WORDS, SKIP_WORDS
+from gdpy.words import STOP_WORDS, SKIP_WORDS
 import re
 import unicodedata
 

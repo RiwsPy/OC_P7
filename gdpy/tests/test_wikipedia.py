@@ -1,8 +1,8 @@
-from app.api.wikipedia import Wikipedia
+from gdpy.api.wikipedia import Wikipedia
 import os
 import json
 from config import Return, Wiki
-from app.api.wikipedia import Wikipedia, params
+from gdpy.api.wikipedia import Wikipedia, params
 import requests
 
 class Mock_requests:

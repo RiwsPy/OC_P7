@@ -1,9 +1,9 @@
 """
-    Test the module app/api/googlemaps.py
+    Test the module gdpy/api/googlemaps.py
 """
 
 import requests
-from app.api.googlemaps import GoogleMaps, Return
+from gdpy.api.googlemaps import GoogleMaps, Return
 import json
 from config import Google
 import os

@@ -1,11 +1,11 @@
 from flask import Flask, request, render_template, jsonify
-from app.api.googlemaps import GoogleMaps
-from app.api.wikipedia import Wikipedia
-from app.parsers import normalize
-from app.words import Sentence, NO_POSITION, NO_WIKI
+from gdpy.api.googlemaps import GoogleMaps
+from gdpy.api.wikipedia import Wikipedia
+from gdpy.parsers import normalize
+from gdpy.words import Sentence, NO_POSITION, NO_WIKI
 from config import Wiki, Return
 from typing import Tuple
-from app import app
+from gdpy import app
 
 
 @app.route('/')

@@ -1,5 +1,5 @@
 from views import papy_response
-from app.words import NO_POSITION, NO_WIKI
+from gdpy.words import NO_POSITION, NO_WIKI
 
 class Map_data:
     def __init__(self) -> None:

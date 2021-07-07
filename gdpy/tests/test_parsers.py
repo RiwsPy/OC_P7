@@ -1,7 +1,7 @@
 """
-    Test the module /app/parsers.py
+    Test the module /gdpy/parsers.py
 """
-from app.parsers import convert_specials_characters, remove_forbid_words
+from gdpy.parsers import convert_specials_characters, remove_forbid_words
 
 def test_convert_specials_characters():
     question = "Bonjour ʦ, est-ce que ʯ cônnais le chemin de la Liberté φ Boston sud Ѯ ?"
