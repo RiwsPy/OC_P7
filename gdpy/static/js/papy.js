@@ -11,18 +11,15 @@ let attr_list = ['id', 'class', 'name', 'placeholder', 'autocomplete',
 'rows', 'readonly', 'type', 'href', 'target']
 
 function gdPy(){
-    alert('coucou1')
+    //alert('coucou1')
     //alert(GOOGLE_MAPS_KEY)
     if (questionButton.hasAttribute('_counter') |
         question.value == '') return
     questionButton.setAttribute('_counter', 1)
-
-    //const url = 'http://127.0.0.1:5000/api/';
-    const url = 'https://rocky-temple-18646.herokuapp.com/api/'
     document.getElementById("GOOGLE_URL").src =
     "https://maps.google.com/maps/api/js?key=AIzaSyDICnA0VqhMKNXJkwbZuWP26CMAedvYWVs&callback=initMap&libraries=&v=weekly"
-    
-    let request = new Request(url, {
+
+    let request = new Request('/api/', {
         method: 'POST',
         headers: new Headers(),
         body: question.value
@@ -31,8 +28,8 @@ function gdPy(){
     fetch(request)
     .then((resp) => resp.json())
     .then((data) => {
-        alert('coucou2')
-
+        //alert('coucou2')
+    
         response.innerText += data.papy_blabla[0]
         show(response);
     
