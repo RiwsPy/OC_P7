@@ -1,7 +1,6 @@
 //console.log(GOOGLE_MAPS_KEY)
 //import GOOGLE_MAPS_KEY from './sample.js';
 
-
 var question = document.getElementById('questionBlock');
 var response = document.getElementById('response');
 var questionButton = document.getElementById("questionButton");
@@ -12,7 +11,7 @@ let attr_list = ['id', 'class', 'name', 'placeholder', 'autocomplete',
 'rows', 'readonly', 'type', 'href', 'target']
 
 function gdPy(){
-    //alert('coucou1')
+    alert('coucou1')
     //alert(GOOGLE_MAPS_KEY)
     if (questionButton.hasAttribute('_counter') |
         question.value == '') return
@@ -31,7 +30,7 @@ function gdPy(){
     fetch(request)
     .then((resp) => resp.json())
     .then((data) => {
-        // alert('coucou2')
+        alert('coucou2')
 
         response.innerText += data.papy_blabla[0]
         show(response);
