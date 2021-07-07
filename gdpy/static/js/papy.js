@@ -17,7 +17,8 @@ function gdPy(){
         question.value == '') return
     questionButton.setAttribute('_counter', 1)
 
-    const url = 'http://127.0.0.1:5000/api/';
+    //const url = 'http://127.0.0.1:5000/api/';
+    const url = 'https://rocky-temple-18646.herokuapp.com/api/'
     document.getElementById("GOOGLE_URL").src =
     "https://maps.google.com/maps/api/js?key=AIzaSyDICnA0VqhMKNXJkwbZuWP26CMAedvYWVs&callback=initMap&libraries=&v=weekly"
     
