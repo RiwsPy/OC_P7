@@ -8,10 +8,6 @@ from typing import Tuple
 from app import app
 
 
-def init():
-    app.run()
-    #app.config.from_object('config')
-
 @app.route('/')
 def papy():
     return render_template('papy.html')
@@ -53,23 +49,5 @@ def papy_response(maps_data: object, wiki_data: object) -> Tuple[str, bool, bool
     return f"{papy_text}\r {maps_data.formatted_address} ? {wiki_data.data[:100]}...", True, True
 
 
-"""
-@app.errorhandler(404)
-def page_404(error):
-    return f"Page introuvable. ERROR 404 by me", 404
-
-@app.route('/animaux/')
-def animaux():
-    return render_template('animaux.html')
-
-@app.route('/contact/', methods={'GET', 'POST'})
-# il est possible de générer deux routes distinctes :
-# @app.route('/contact/', methods={'GET'})
-# @app.route('/contact/', methods={'POST'})
-def truc():
-    mail = 't.d@mail.fr'
-    adr = '222 NickonNiki'
-    return f'{mail}, {adr} {request.path} {request.method} {dir(request)} {request.get_json}'
-"""
 if __name__ == "__main__":
     app.run()
