@@ -1,7 +1,12 @@
 # bind = "127.0.0.1:5000"
 
-PAPY_URL = 'http://127.0.0.1:5000/api/'
-PAPY_URL_DEPLOY = 'https://rocky-temple-18646.herokuapp.com/api/'
+DEV = 'DEPLOY' # 'TEST'
+
+if DEV == 'TEST':
+    PAPY_URL = 'http://127.0.0.1:5000/api/'
+else:
+    PAPY_URL = 'https://rocky-temple-18646.herokuapp.com/api/'
+
 GOOGLE_MAPS_KEY= "AIzaSyDICnA0VqhMKNXJkwbZuWP26CMAedvYWVs"
 
 class Google:
