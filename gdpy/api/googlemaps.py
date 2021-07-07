@@ -2,7 +2,6 @@ import requests
 import os
 import json
 from config import Return, Google, DEV
-from boto.s3.connection import S3Connection
 
 class GoogleMaps:
     def __init__(self) -> None:
@@ -11,10 +10,7 @@ class GoogleMaps:
         self.return_value = Return.DEFAULT_ERROR
 
     def req(self, address: str) -> object:
-        if DEV == 'TEST':
-            google_key = os.getenv("GOOGLE_MAPS_KEY")
-        else:
-            google_key = S3Connection(os.environ("GOOGLE_MAPS_KEY"))
+        google_key = os.getenv("GOOGLE_MAPS_KEY")
         params = {
             'address': address,
             'key': google_key
