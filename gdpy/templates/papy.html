@@ -74,14 +74,13 @@
     </section>
     </footer>
 
-
     <script
-      id="GOOGLE_URL"
+      src="https://maps.google.com/maps/api/js?key={{ config.google_key }}&callback=initMap&libraries=&v=weekly"
       async
     ></script>
     <!-- Bootstrap JS -->
     <script src=" {{ url_for('static', filename='js/bootstrap/bootstrap.min.js')}} "></script>
-    <script type="text/javascript" src=" {{url_for('static', filename='js/papy.js')}} "></script>
+    <script type="text/javascript" src=" {{ url_for('static', filename='js/papy.js') }} "></script>
   </body>
 
 </html>

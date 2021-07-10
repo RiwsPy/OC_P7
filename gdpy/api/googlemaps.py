@@ -1,7 +1,7 @@
 import requests
 import os
 import json
-from config import Return, Google, DEV
+from config import Return, Google
 
 class GoogleMaps:
     def __init__(self) -> None:
@@ -10,13 +10,13 @@ class GoogleMaps:
         self.return_value = Return.DEFAULT_ERROR
 
     def req(self, address: str) -> object:
-        google_key = os.getenv("GOOGLE_MAPS_KEY")
         params = {
             'address': address,
-            'key': google_key
+            'key': os.getenv("GOOGLE_MAPS_KEY")
         }
 
-        print('recherche pour :', address)
+        if os.getenv('DEV_PHASE') == 'TEST':
+            print('recherche pour :', address)
         req = requests.get(Google.GEOCODE_URL, params)
         self.save_data(req)
 

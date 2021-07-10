@@ -1,6 +1,3 @@
-//console.log(GOOGLE_MAPS_KEY)
-//import GOOGLE_MAPS_KEY from './sample.js';
-
 var question = document.getElementById('questionBlock');
 var response = document.getElementById('response');
 var questionButton = document.getElementById("questionButton");
@@ -12,12 +9,9 @@ let attr_list = ['id', 'class', 'name', 'placeholder', 'autocomplete',
 
 function gdPy(){
     //alert('coucou1')
-    //alert(GOOGLE_MAPS_KEY)
     if (questionButton.hasAttribute('_counter') |
         question.value == '') return
     questionButton.setAttribute('_counter', 1)
-    document.getElementById("GOOGLE_URL").src =
-    "https://maps.google.com/maps/api/js?key=AIzaSyDICnA0VqhMKNXJkwbZuWP26CMAedvYWVs&callback=initMap&libraries=&v=weekly"
 
     let request = new Request('/api/', {
         method: 'POST',
