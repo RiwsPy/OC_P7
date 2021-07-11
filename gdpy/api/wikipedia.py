@@ -1,16 +1,16 @@
 import requests
 import json
 from config import Wiki, Return
-    
+import os
 
 params = {
-    'action': 'query', # extraction des données
-    'format': 'json', # format de la réponse
-    'utf8': 1, # formatage en utf-8 (si possible)
+    'action': 'query', # data extract
+    'format': 'json', # response extension
+    'utf8': 1, # utf-8 conversion (if possible)
     'prop': 'extracts',
-    'explaintext': 1, # convertion en un texte plus lisible
-    'generator': 'geosearch', # recherche par géolocalisation
-    'ggscoord': '0|0', # position
+    'explaintext': 1, # more human readable
+    'generator': 'geosearch', # geolocalisation search
+    'ggscoord': '0|0', # default position
 
     'formatversion': 2
 
@@ -18,13 +18,13 @@ params = {
 
 class Wikipedia:
     def __init__(self) -> None:
-        self.data = ''
-        self.url = Wiki.DEFAULT_URL
-        self.return_value = Return.NO_RETURN
+        self.return_value = Return.DEFAULT_ERROR
+        self.blabla = ''
+        self.url = ''
 
     def req(self, lat: int, lng: int) -> object:
-        if not lat or not lng:
-            self.return_value = Return.COORD_ERROR
+        if not isinstance(lat, float) or not isinstance(lng, float):
+            self.return_value = Return.USER_ERROR
             return self
 
         params['ggscoord'] = f'{lat}|{lng}'
@@ -42,19 +42,18 @@ class Wikipedia:
             response = json.loads(req.text)
             if response.get('query'):
                 # 'title' pour une info résumée
-                self.data = response['query']['pages'][0]['extract']
+                self.blabla = response['query']['pages'][0]['extract']
                 self.url = Wiki.SEARCH_URL + \
                     f"curid={response['query']['pages'][0]['pageid']}"
                 self.return_value = Return.RETURN_OK
-                print(self.data[:100])
             elif response.get('batchcomplete') is True:
-                print('Format correct, mais aucune information trouvée sur Wiki.')
+                if os.getenv('DEV_PHASE') == 'TEST':
+                    print('Format correct, mais aucune information trouvée sur Wiki.')
+                self.return_value = Return.NO_RETURN
             elif response.get('error'):
-                self.data += response['error']
-                self.return_value = Return.DEFAULT_ERROR
+                self.blabla = response['error']
+                self.return_value = Return.USER_ERROR
             else:
-                self.return_value = Return.UNKNOWN_EVENT
-                print(response)
+                self.return_value = Return.USER_ERROR
         else:
             self.return_value = Return.URL_ERROR
-            print('Lien wiki invalide')

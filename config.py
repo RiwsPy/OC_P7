@@ -1,9 +1,28 @@
-# bind = "127.0.0.1:5000"
 
 class Google:
     GEOCODE_URL = "https://maps.googleapis.com/maps/api/geocode/json?"
-    STATUS_OK = 'OK'
-    STATUS_NO_RESULT = 'NO_RESULT'
+
+    # See https://developers.google.com/maps/documentation/javascript/geocoding#GeocodingStatusCodes
+    class Status(str):
+        OK = 'OK'
+        ZERO_RESULTS = 'ZERO_RESULTS'
+        OVER_QUERY_LIMIT = 'OVER_QUERY_LIMIT'
+        REQUEST_DENIED = 'REQUEST_DENIED'
+        INVALID_REQUEST = 'INVALID_REQUEST'
+        UNKNOWN_ERROR = 'UNKNOWN_ERROR'
+        ERROR = 'ERROR'
+
+        @property
+        def is_ok(self):
+            return self == self.__class__.OK
+
+        @property
+        def is_error_from_server(self):
+            return self in (self.__class__.UNKNOWN_ERROR, self.__class__.ERROR)
+
+        @property
+        def is_error_from_user(self):
+            return not self.is_ok and not self.is_error_from_server
 
 class Wiki:
     DEFAULT_URL = "https://fr.wikipedia.org/wiki/Wikip%C3%A9dia:Accueil_principal"
@@ -11,9 +30,8 @@ class Wiki:
     SEARCH_URL = "https://fr.wikipedia.org/wiki?"
 
 class Return:
-    UNKNOWN_EVENT = -4
-    WIKI_ERROR = -3
-    COORD_ERROR = -2
+    SERVER_ERROR = -3
+    USER_ERROR = -2
     URL_ERROR = -1
     DEFAULT_ERROR = 0
     NO_RETURN = 1

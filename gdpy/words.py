@@ -85,7 +85,9 @@ SKIP_WORDS = {
     }
 
 NO_POSITION = "Quoi ? Je n'ai pas compris, peux-tu répéter plus fort ?"
-NO_WIKI = "Oui, oui j'ai déjà entendu parlé de cet endroit mais ma mémoire n'est plus ce qu'elle était..."
+NO_GOOGLE = "Oulala, il y a quelque chose que cloche par ici."
+NO_WIKI = "Je ne connais pas cet endroit, il faudrait que tu m'y emmènes !"
+NO_WIKI_INFO = "Oui, oui j'ai déjà entendu parlé de cet endroit mais ma mémoire n'est plus ce qu'elle était..."
 
 from random import choice
 class Sentence:
@@ -156,18 +158,18 @@ class Sentence:
     ]
 
     COMPLEMENT = [
-        "sa bague de fiançaille.",
-        "son os à ronger.",
-        "une chaîne de vélo.",
-        "la noirceur du coeur des Hommes.",
-        "au 7ème Ciel.",
-        "une salopette devant le Président.",
-        "un brasier ardent.",
-        "un slip usagé.",
-        "un extraterrestre.",
-        "un véritable trésor de pirate.",
-        "l'amour de toute une vie.",
-        "ses chaussures en direct.",
+        "sa bague de fiançaille...",
+        "son os à ronger...",
+        "une chaîne de vélo...",
+        "la noirceur du coeur des Hommes...",
+        "au 7ème Ciel...",
+        "une salopette devant le Président...",
+        "un brasier ardent...",
+        "un slip usagé...",
+        "un extraterrestre...",
+        "un véritable trésor de pirate...",
+        "l'amour de toute une vie...",
+        "ses chaussures en direct...",
     ]
 
     @classmethod
