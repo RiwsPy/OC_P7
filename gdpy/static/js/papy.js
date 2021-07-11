@@ -5,7 +5,7 @@ var map = document.getElementById("map");
 var wikiLink = document.getElementById('wikiLink');
 
 let attr_list = ['id', 'class', 'name', 'placeholder', 'autocomplete',
-'rows', 'readonly', 'type', 'href', 'target']
+'rows', 'readonly', 'type', 'href', 'target', 'spellcheck']
 
 function gdPy(){
     //alert('coucou1')
