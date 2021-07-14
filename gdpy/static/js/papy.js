@@ -3,6 +3,7 @@ var response = document.getElementById('response');
 var questionButton = document.getElementById("questionButton");
 var map = document.getElementById("map");
 var wikiLink = document.getElementById('wikiLink');
+var loader = document.getElementById('loader');
 
 let attr_list = ['id', 'class', 'name', 'placeholder', 'autocomplete',
 'rows', 'readonly', 'type', 'href', 'target', 'spellcheck']
@@ -18,30 +19,27 @@ function gdPy(){
         headers: new Headers(),
         body: question.value
         })
+    show(loader)
 
     fetch(request)
     .then((resp) => resp.json())
     .then((data) => {
         //alert('coucou2')
-    
-        response.innerText += data.papy_blabla[0]
+        hide(loader)
+        response.innerText += data.papy_blabla
         show(response);
     
-        if ( map !== null & data.papy_blabla[1]){
+        if ( map !== null & data.found_place){
             initMap(data.position);
             show(map);
 
             if (wikiLink !== null &
-                data.papy_blabla[2] & 
+                data.found_wiki & 
                 data.wiki_url !== undefined) {
-                    wikiLink.setAttribute('href', data.wiki_url)
-                    show(wikiLink)
+                    wikiLink.setAttribute('href', data.wiki_url);
+                    show(wikiLink);
             }
         }
-        /*for (elt of test_copy.children) {
-            console.log(elt.nodeName)
-        }*/
-
         new_question = createNewBlock(question);
         question.setAttribute('readonly', 0)
         question = new_question
@@ -51,9 +49,10 @@ function gdPy(){
         wikiLink = createNewBlock(wikiLink);
 
         questionButton.removeAttribute('_counter');
-
     })
-    .catch(error => alert("Erreur : " + error));
+    .catch((error) => {
+        hide(loader)
+        alert("Erreur : " + error)});
 }
 
 function show(cls){

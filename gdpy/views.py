@@ -28,7 +28,10 @@ def api() -> jsonify:
             result['wiki_url'] = wiki_data.url
             result['position'] = maps_data.position
 
-    result['papy_blabla'] = papy_response(maps_data, wiki_data)
+    blabla, found_place, found_wiki = papy_response(maps_data, wiki_data)
+    result['papy_blabla'] = blabla
+    result['found_place'] = found_place
+    result['found_wiki'] = found_wiki
 
     return jsonify(result)
 
