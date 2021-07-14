@@ -20,7 +20,6 @@
           <label class="form-label" for="questionBlock"></label>
           <textarea
             class="form-control"
-            type="text"
             id="questionBlock"
             name="questionBlock"
             placeholder="La question à Papy"
@@ -33,7 +32,6 @@
           <div class="loader" id="loader"></div>
           <textarea
             id="response"
-            type="text"
             class="form-control"
             name="response"
             placeholder="La réponse de Papy"
@@ -47,7 +45,6 @@
 
           <textarea
             id="response2"
-            type="text"
             class="form-control"
             name="response2"
             placeholder="La seconde réponse de Papy"
@@ -74,7 +71,7 @@
       <div class="container">
         <div class="row d-flex justify-content-center">
           <div class="col-6" id="author_sign">
-            Debruyne Thibault</br>
+            <h6>Debruyne Thibault</h6>
             Développeur d'application python junior
           </div>       
           <div class="col-6" id="social_links">
@@ -91,7 +88,7 @@
     ></script>
     <!-- Bootstrap JS -->
     <script src=" {{ url_for('static', filename='js/bootstrap/bootstrap.min.js')}} "></script>
-    <script type="text/javascript" src=" {{ url_for('static', filename='js/papy.js') }} "></script>
+    <script src=" {{ url_for('static', filename='js/papy.js') }} "></script>
   </body>
 
 </html>
