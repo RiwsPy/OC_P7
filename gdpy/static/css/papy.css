@@ -8,6 +8,8 @@ body, html
 
 footer
 {
+    position: fixed;
+    bottom: 0;
     width: 100%;
     background-color: #55a1c7;
 }
@@ -24,7 +26,7 @@ footer
     display: inline-block;
     position:relative;
     left: 2%;
-    margin-bottom: 30px;
+    margin-bottom: 100px;
 }
 
 #map
@@ -35,7 +37,7 @@ footer
     left: 98%;
 }
 
-#response
+#response, #response2
 {
     display: none;
     position:relative;
@@ -53,14 +55,14 @@ footer
     margin-bottom: 5px;
 }
 
-.loader {
-    position : fixed;
+.loader
+{
+    position: fixed;
     z-index: 9999;
-    background : url('icon-loader.gif') 50% 50% no-repeat;
-    top : 0px;
-    left : 0px;
-    height : 100%;
-    width : 100%;
-    cursor : wait;
+    top: 0px;
+    left: 0px;
+    height: 100%;
+    width: 100%;
+    cursor: wait;
     display: none;
 }

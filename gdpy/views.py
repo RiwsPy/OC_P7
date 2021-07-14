@@ -28,8 +28,9 @@ def api() -> jsonify:
             result['wiki_url'] = wiki_data.url
             result['position'] = maps_data.position
 
-    blabla, found_place, found_wiki = papy_response(maps_data, wiki_data)
-    result['papy_blabla'] = blabla
+    blabla_1, blabla_2, found_place, found_wiki = papy_response(maps_data, wiki_data)
+    result['papy_blabla_1'] = blabla_1
+    result['papy_blabla_2'] = blabla_2
     result['found_place'] = found_place
     result['found_wiki'] = found_wiki
 
@@ -38,17 +39,17 @@ def api() -> jsonify:
 
 def papy_response(maps_data: object, wiki_data: object) -> Tuple[str, bool, bool]:
     if maps_data.return_value in (Return.NO_RETURN, Return.USER_ERROR):
-        return NO_POSITION, False, False
+        return NO_POSITION, '', False, False
     elif maps_data.return_value == Return.SERVER_ERROR:
-        return NO_GOOGLE, False, False
+        return NO_GOOGLE, '', False, False
 
     if wiki_data is None or wiki_data.return_value == Return.NO_RETURN:
-        return NO_WIKI_INFO, True, False
+        return NO_WIKI_INFO, '', True, False
     elif wiki_data.return_value == Return.USER_ERROR:
-        return NO_WIKI, True, False
+        return NO_WIKI, '', True, False
 
     papy_text = Sentence().create_random_sentence()
-    return f"{papy_text}\r {maps_data.formatted_address} ? {wiki_data.blabla[:100]}...", True, True
+    return maps_data.formatted_address, f"{papy_text}\r {wiki_data.blabla[:100]}...", True, True
 
 
 if __name__ == "__main__":

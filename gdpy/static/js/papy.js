@@ -1,5 +1,6 @@
 var question = document.getElementById('questionBlock');
 var response = document.getElementById('response');
+var response2 = document.getElementById('response2');
 var questionButton = document.getElementById("questionButton");
 var map = document.getElementById("map");
 var wikiLink = document.getElementById('wikiLink');
@@ -20,13 +21,14 @@ function gdPy(){
         body: question.value
         })
     show(loader)
+    hide(questionButton)
 
     fetch(request)
     .then((resp) => resp.json())
     .then((data) => {
         //alert('coucou2')
-        hide(loader)
-        response.innerText += data.papy_blabla
+        response.innerText += data.papy_blabla_1
+        response2.innerText += data.papy_blabla_2
         show(response);
     
         if ( map !== null & data.found_place){
@@ -36,16 +38,18 @@ function gdPy(){
             if (wikiLink !== null &
                 data.found_wiki & 
                 data.wiki_url !== undefined) {
-                    wikiLink.setAttribute('href', data.wiki_url);
-                    show(wikiLink);
+                    setTimeout(function() {
+                        wikiLink.setAttribute('href', data.wiki_url);
+                        show(response2);
+                        show(wikiLink);
+                        new_question_block();
+                    }, 3000)
             }
+            else {new_question_block();}
         }
-        new_question = createNewBlock(question);
-        question.setAttribute('readonly', 0)
-        question = new_question
-
         response = createNewBlock(response);
         map = createNewBlock(map);
+        response2 = createNewBlock(response2);
         wikiLink = createNewBlock(wikiLink);
 
         questionButton.removeAttribute('_counter');
@@ -53,6 +57,15 @@ function gdPy(){
     .catch((error) => {
         hide(loader)
         alert("Erreur : " + error)});
+}
+
+function new_question_block(){
+    new_question = createNewBlock(question);
+    question.setAttribute('readonly', 0)
+    question = new_question
+    hide(loader)
+    show(questionButton)
+
 }
 
 function show(cls){
