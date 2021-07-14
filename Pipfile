@@ -10,7 +10,6 @@ flask = "*"
 flask-sqlalchemy = "*"
 requests = "*"
 python-dotenv = "*"
-nodejs = "*"
 gunicorn = "*"
 
 [requires]
