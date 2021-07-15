@@ -1,8 +1,7 @@
-
 class Google:
     GEOCODE_URL = "https://maps.googleapis.com/maps/api/geocode/json?"
 
-    # See https://developers.google.com/maps/documentation/javascript/geocoding#GeocodingStatusCodes
+    # https://developers.google.com/maps/documentation/javascript/geocoding#GeocodingStatusCodes
     class Status(str):
         OK = 'OK'
         ZERO_RESULTS = 'ZERO_RESULTS'
@@ -13,21 +12,24 @@ class Google:
         ERROR = 'ERROR'
 
         @property
-        def is_ok(self):
+        def is_ok(self) -> bool:
             return self == self.__class__.OK
 
         @property
-        def is_error_from_server(self):
+        def is_error_from_server(self) -> bool:
             return self in (self.__class__.UNKNOWN_ERROR, self.__class__.ERROR)
 
         @property
-        def is_error_from_user(self):
+        def is_error_from_user(self) -> bool:
             return not self.is_ok and not self.is_error_from_server
 
+
 class Wiki:
-    DEFAULT_URL = "https://fr.wikipedia.org/wiki/Wikip%C3%A9dia:Accueil_principal"
-    URL = "https://fr.wikipedia.org/w/api.php"
-    SEARCH_URL = "https://fr.wikipedia.org/wiki?"
+    BASE_URL = "https://fr.wikipedia.org/"
+    DEFAULT_URL = BASE_URL + "wiki/Wikip%C3%A9dia:Accueil_principal"
+    API_URL = BASE_URL + "w/api.php"
+    SEARCH_URL = BASE_URL + "wiki?"
+
 
 class Return:
     SERVER_ERROR = -3
@@ -36,4 +38,3 @@ class Return:
     DEFAULT_ERROR = 0
     NO_RETURN = 1
     RETURN_OK = 2
-

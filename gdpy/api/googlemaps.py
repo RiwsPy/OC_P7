@@ -3,16 +3,25 @@ import os
 import json
 from config import Return, Google
 
+
 class GoogleMaps:
+    """
+        One class to request GoogleMaps and save data
+    """
     def __init__(self) -> None:
         self.return_value = Return.DEFAULT_ERROR
         self.position = {}
         self.formatted_address = ''
 
     def req(self, address: str) -> object:
+        """
+            Request ``adress`` to Google API geocoding
+            And save few data (see ``save_data`` method)
+            *return: self
+        """
         params = {
             'address': address,
-            'region': 'FR', # region influence
+            'region': 'FR',  # region influence
             'key': os.getenv("GOOGLE_MAPS_KEY")
         }
 
@@ -23,7 +32,10 @@ class GoogleMaps:
 
         return self
 
-    def save_data(self, req):
+    def save_data(self, req) -> None:
+        """
+            From ``req`` request, take and save few data in attributes
+        """
         response = json.loads(req.text)
         if req.status_code == 200:
             google_status = Google.Status(response['status'])

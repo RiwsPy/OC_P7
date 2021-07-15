@@ -1,6 +1,5 @@
 from flask import Flask
 import os
-import setting
 
 app = Flask(__name__)
 app.debug = os.getenv('DEV_PHASE') == 'TEST'

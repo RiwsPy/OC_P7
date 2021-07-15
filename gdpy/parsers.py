@@ -6,13 +6,17 @@ import unicodedata
 Two methods to clean the user's question
 """
 
+
 def normalize(question: str) -> str:
     """
-        Convert specials characters in ``question`` and remove banned words.
-        See also ``convert_specials_characters`` and ``remove_forbid_words`` methods
+        Convert specials characters in ``question``
+        and remove banned words.
+        See also ``convert_specials_characters``
+        and ``remove_forbid_words`` methods
     """
     question = convert_specials_characters(question)
     return remove_forbid_words(question)
+
 
 def convert_specials_characters(question: str) -> str:
     """
@@ -20,6 +24,7 @@ def convert_specials_characters(question: str) -> str:
     """
     question = unicodedata.normalize('NFKD', question)
     return question.encode('ASCII', 'ignore').decode('utf-8')
+
 
 def remove_forbid_words(question: str) -> str:
     """`

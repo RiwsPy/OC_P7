@@ -7,9 +7,11 @@ from config import Return
 from typing import Tuple
 from gdpy import app
 
+
 @app.route('/')
-def papy():
+def papy() -> str:
     return render_template('papy.html')
+
 
 @app.route('/api/', methods={'POST'})
 def api() -> jsonify:
@@ -28,7 +30,8 @@ def api() -> jsonify:
             result['wiki_url'] = wiki_data.url
             result['position'] = maps_data.position
 
-    blabla_1, blabla_2, found_place, found_wiki = papy_response(maps_data, wiki_data)
+    blabla_1, blabla_2, found_place, found_wiki = \
+        papy_response(maps_data, wiki_data)
     result['papy_blabla_1'] = blabla_1
     result['papy_blabla_2'] = blabla_2
     result['found_place'] = found_place
@@ -37,19 +40,35 @@ def api() -> jsonify:
     return jsonify(result)
 
 
-def papy_response(maps_data: object, wiki_data: object) -> Tuple[str, bool, bool]:
+def papy_response(maps_data: object, wiki_data: object) \
+        -> Tuple[str, str, bool, bool]:
+    """
+        From result of Google API (``maps_data``)
+        and WikiMedia API (``wiki_data``)
+        generate a bot random response and take the decision
+        to show maps or wiki link
+    """
+    second_message = ''
+    display_map = False
+    display_wiki = False
     if maps_data.return_value in (Return.NO_RETURN, Return.USER_ERROR):
-        return NO_POSITION, '', False, False
+        first_message = NO_POSITION
     elif maps_data.return_value == Return.SERVER_ERROR:
-        return NO_GOOGLE, '', False, False
+        first_message = NO_GOOGLE
+    else:
+        display_map = True
+        first_message = maps_data.formatted_address
+        if wiki_data is None or wiki_data.return_value == Return.NO_RETURN:
+            second_message = NO_WIKI_INFO
+        elif wiki_data.return_value == Return.USER_ERROR:
+            second_message = NO_WIKI
 
-    if wiki_data is None or wiki_data.return_value == Return.NO_RETURN:
-        return NO_WIKI_INFO, '', True, False
-    elif wiki_data.return_value == Return.USER_ERROR:
-        return NO_WIKI, '', True, False
+        else:
+            papy_text = Sentence().create_random_sentence()
+            second_message = f"{papy_text}\r {wiki_data.blabla[:100]}..."
+            display_wiki = True
 
-    papy_text = Sentence().create_random_sentence()
-    return maps_data.formatted_address, f"{papy_text}\r {wiki_data.blabla[:100]}...", True, True
+    return first_message, second_message, display_map, display_wiki
 
 
 if __name__ == "__main__":

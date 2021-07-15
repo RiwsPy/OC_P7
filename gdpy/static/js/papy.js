@@ -47,6 +47,7 @@ function gdPy(){
             }
             else {new_question_block();}
         }
+        else {new_question_block();}
         response = createNewBlock(response);
         map = createNewBlock(map);
         response2 = createNewBlock(response2);
