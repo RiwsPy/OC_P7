@@ -21,7 +21,7 @@ class Wikipedia:
     """
 
     def __init__(self) -> None:
-        self.return_value = Return.DEFAULT_ERROR
+        self.return_value = Return.USER_ERROR
         self.blabla = ''
         self.url = ''
 
@@ -32,7 +32,6 @@ class Wikipedia:
             *return: self
         """
         if not isinstance(lat, float) or not isinstance(lng, float):
-            self.return_value = Return.USER_ERROR
             return self
 
         params['ggscoord'] = f'{lat}|{lng}'
@@ -60,8 +59,5 @@ class Wikipedia:
                 self.return_value = Return.NO_RETURN
             elif response.get('error'):
                 self.blabla = response['error']
-                self.return_value = Return.USER_ERROR
-            else:
-                self.return_value = Return.USER_ERROR
         else:
             self.return_value = Return.URL_ERROR

@@ -9,7 +9,7 @@ class GoogleMaps:
         One class to request GoogleMaps and save data
     """
     def __init__(self) -> None:
-        self.return_value = Return.DEFAULT_ERROR
+        self.return_value = Return.USER_ERROR
         self.position = {}
         self.formatted_address = ''
 
@@ -54,7 +54,5 @@ class GoogleMaps:
                 self.return_value = Return.NO_RETURN
             elif google_status.is_error_from_server:
                 self.return_value = Return.SERVER_ERROR
-            else:
-                self.return_value = Return.USER_ERROR
         else:
             self.return_value = Return.URL_ERROR
