@@ -11,6 +11,10 @@ chemin de la Liberté φ Boston sud Ѯ ?"
     assert normal_question == "Bonjour , est-ce que  connais \
 le chemin de la Liberte  Boston sud  ?"
 
+def test_XSS_flaw():
+    question = "<script>location.href='http://www.your_friend.org/upgrade.php?'</script>"
+    normal_question = remove_forbid_words(question)
+    assert '<' not in normal_question
 
 def test_remove_forbid_words():
     question = "Bonjour GrandPy, est-ce que tu connais \

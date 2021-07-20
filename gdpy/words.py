@@ -125,7 +125,7 @@ NO_GOOGLE = \
 NO_WIKI = \
     "Je ne connais pas cet endroit, il faudrait que tu m'y emmènes !"
 NO_WIKI_INFO = \
-    "Oui, oui j'ai déjà entendu parlé de cet endroit\
+    "Oui, oui j'ai déjà entendu parlé de cet endroit \
 mais ma mémoire n'est plus ce qu'elle était..."
 
 from random import choice

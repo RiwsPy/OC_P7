@@ -12,7 +12,10 @@
     <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
   </head>
 
-  <body id="main">
+  <body>
+    <header>
+      <h1>GrandPy</h1>
+    </header>
     <!--<section style="background-color: #66ccff;">-->
     <div class="row">
       <div class="col">
@@ -63,16 +66,16 @@
         class="btn btn-success"
         id="questionButton"
         onClick='return gdPy()'
-        >GO</button>
+        >Envoyer</button>
       </div>
     </div>
 
     <footer>
       <div class="container">
         <div class="row d-flex justify-content-center">
-          <div class="col-6" id="author_sign">
+          <div class="col-4" id="author_sign">
             <h6>Debruyne Thibault</h6>
-            Développeur d'application python junior
+            <h5>Développeur d'application python junior</h5>
           </div>       
           <div class="col-6" id="social_links">
             <a href="https://github.com/RiwsPy" target="_blank"><img src="{{ url_for('static', filename='img/github.png') }}" alt="logo GitHub" height="30"></a>
