@@ -2,7 +2,8 @@ from flask import request, render_template, jsonify
 from gdpy.api.googlemaps import GoogleMaps
 from gdpy.api.wikipedia import Wikipedia
 from gdpy.parsers import normalize
-from gdpy.words import Sentence, NO_POSITION, NO_WIKI, NO_GOOGLE, NO_WIKI_INFO
+from gdpy.words import Sentence, NO_POSITION, NO_WIKI, NO_GOOGLE, \
+    NO_WIKI_INFO, I_HAVE_THE_RESPONSE
 from config import Return
 from typing import Tuple
 from gdpy import app
@@ -57,7 +58,7 @@ def papy_response(maps_data: object, wiki_data: object) \
         first_message = NO_GOOGLE
     else:
         display_map = True
-        first_message = maps_data.formatted_address
+        first_message = I_HAVE_THE_RESPONSE + maps_data.formatted_address
         if wiki_data is None or wiki_data.return_value == Return.NO_RETURN:
             second_message = NO_WIKI_INFO
         elif wiki_data.return_value == Return.USER_ERROR:

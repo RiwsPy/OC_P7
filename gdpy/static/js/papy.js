@@ -35,17 +35,17 @@ function gdPy(){
             initMap(data.position);
             show(map);
 
-            if (wikiLink !== null &
-                data.found_wiki & 
-                data.wiki_url !== undefined) {
-                    setTimeout(function() {
-                        wikiLink.setAttribute('href', data.wiki_url);
-                        show(response2);
-                        show(wikiLink);
-                        new_question_block();
-                    }, 3000)
-            }
-            else {new_question_block();}
+            //setTimeout(function() {
+                if (wikiLink !== null &
+                    data.found_wiki & 
+                    data.wiki_url !== undefined) {
+                            wikiLink.setAttribute('href', data.wiki_url);
+                            show(response2);
+                            show(wikiLink);
+                            new_question_block();
+                }
+                else {new_question_block();}
+            //}, 3000)
         }
         else {new_question_block();}
         response = createNewBlock(response);

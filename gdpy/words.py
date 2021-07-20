@@ -127,6 +127,7 @@ NO_WIKI = \
 NO_WIKI_INFO = \
     "Oui, oui j'ai déjà entendu parlé de cet endroit \
 mais ma mémoire n'est plus ce qu'elle était..."
+I_HAVE_THE_RESPONSE = "Voici l'adresse : "
 
 from random import choice
 

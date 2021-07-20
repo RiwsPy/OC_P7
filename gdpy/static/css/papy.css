@@ -1,11 +1,41 @@
 
+@font-face {
+    font-family: "Marguerite_font";
+    src: url('../fonts/Marguerite/Marguerite.ttf');
+}
+
+@font-face {
+    font-family: "Heart_font";
+    src: url('../fonts/AlwaysInMyHeart/AlwaysInMyHeart.ttf');
+}
+
 header
 {
     width: 100%;
-    height: 74px;
+    height: 120px;
     background: url('../img/flying2.png') no-repeat;
-    font-family: 'Black_jackregular', serif;
-    color: green;
+}
+
+#GdPy_picture
+{
+    height: 74px;
+    float:inline-end;
+}
+
+header p
+{
+    font-size: 280%;
+    font-family: 'Marguerite_font', serif;
+    color: rgb(151, 92, 4);
+    text-align: center;
+    margin-bottom: 25px;
+}
+
+header h2
+{
+    font-style: italic;
+    font-size: 80%;
+    text-align: center;
 }
 
 body, html
@@ -43,9 +73,11 @@ body, html
     display: none;
     position:relative;
     text-align: right;
+    font-size: 150%;
     resize: none;
     left: 98%;
     margin-bottom: 5px;
+    font-family: 'Heart_font';
 }
 
 #wikiLink
@@ -83,7 +115,7 @@ footer
 
 footer h6
 {
-    font-family: 'Black_jackregular', serif;
+    font-family: serif;
 	font-weight:bold;
     margin-bottom: 0px;
 }

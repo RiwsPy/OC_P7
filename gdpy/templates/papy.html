@@ -6,7 +6,7 @@
     <link href=" {{ url_for('static', filename='css/bootstrap/bootstrap.min.css') }} " rel="stylesheet" type="text/css" />
 
     <link href=" {{ url_for('static', filename='css/papy.css') }} " rel="stylesheet" type="text/css" />
-    <title>PapyBot</title>
+    <title>GrandPy</title>
     <link rel="icon" type="image/png" href="../static/img/favicon.png">
     <!-- GoogleMaps-->
     <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
@@ -14,7 +14,8 @@
 
   <body>
     <header>
-      <h1>GrandPy</h1>
+      <p>GrandPy  <img src="{{ url_for('static', filename='img/Papy.png') }}" alt="GdPy picture" id="GdPy_picture">
+      <h2>À la recherche d'une adresse ? GrandPy est prêt à vous inonder de son savoir.</h2>
     </header>
     <!--<section style="background-color: #66ccff;">-->
     <div class="row">
@@ -37,10 +38,10 @@
             id="response"
             class="form-control"
             name="response"
-            placeholder="La réponse de Papy"
+            placeholder="Le message de Papy"
             spellcheck="false"
             readonly
-            rows="4"
+            rows="2"
           ></textarea>
           <div id="map">
             <!-- Map -->
@@ -50,10 +51,10 @@
             id="response2"
             class="form-control"
             name="response2"
-            placeholder="La seconde réponse de Papy"
+            placeholder="Le second message de Papy"
             spellcheck="false"
             readonly
-            rows="4"
+            rows="5"
           ></textarea>
           <a href="https://fr.wikipedia.org/wiki/Wikip%C3%A9dia:Accueil_principal"
             id="wikiLink"
