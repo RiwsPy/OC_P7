@@ -1,4 +1,4 @@
 
 if __name__ == "__main__":
-    from gdpy import app
+    from gdpy.website import app
     app.run()

@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html id='all' lang='fr-fr'>
+  <head>
+    <meta charset="UTF-8" />
+    <!-- Bootstrap css -->
+    <link href=" {{ url_for('static', filename='css/bootstrap/bootstrap.min.css') }} " rel="stylesheet" type="text/css" />
+
+    <link href=" {{ url_for('static', filename='css/papy.css') }} " rel="stylesheet" type="text/css" />
+    <title>GrandPy</title>
+    <link rel="icon" type="image/png" href="../static/img/favicon.png">
+    <!-- GoogleMaps-->
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+  </head>
+
+  <body>
+    <header>
+      <p>GrandPy  <img src="{{ url_for('static', filename='img/Papy.png') }}" alt="GdPy picture" id="GdPy_picture">
+      <h2>À la recherche d'une adresse ? GrandPy est prêt à vous inonder de son savoir.</h2>
+    </header>
+    <!--<section style="background-color: #66ccff;">-->
+    <div class="row">
+      <div class="col">
+        <div class="form-outline w-50">
+          <label class="form-label" for="questionBlock"></label>
+          <textarea
+            class="form-control"
+            id="questionBlock"
+            name="questionBlock"
+            placeholder="La question à Papy"
+            autocomplete=off
+            spellcheck="false"
+            autofocus
+            required
+            rows="4"
+          ></textarea>
+          <div class="loader" id="loader"></div>
+          <textarea
+            id="response"
+            class="form-control"
+            name="response"
+            placeholder="Le message de Papy"
+            spellcheck="false"
+            readonly
+            rows="2"
+          ></textarea>
+          <div id="map">
+            <!-- Map -->
+          </div>
+
+          <textarea
+            id="response2"
+            class="form-control"
+            name="response2"
+            placeholder="Le second message de Papy"
+            spellcheck="false"
+            readonly
+            rows="5"
+          ></textarea>
+          <a href="https://fr.wikipedia.org/wiki/Wikip%C3%A9dia:Accueil_principal"
+            id="wikiLink"
+            class="btn btn-success btn-block"
+            role="button"
+            target="_blank"
+          >Lien Wiki</a>
+        </div>
+      <button
+        class="btn btn-success"
+        id="questionButton"
+        onClick='return gdPy()'
+        >Envoyer</button>
+      </div>
+      <div id="after_button"></div>
+    </div>
+
+    <footer>
+      <div class="container">
+        <div class="row d-flex justify-content-center">
+          <div class="col-4" id="author_sign">
+            <h6>Debruyne Thibault</h6>
+            <h5>Développeur d'application python junior</h5>
+          </div>       
+          <div class="col-6" id="social_links">
+            <a href="https://github.com/RiwsPy" target="_blank"><img src="{{ url_for('static', filename='img/github.png') }}" alt="logo GitHub" height="30"></a>
+            <a href="https://fr.linkedin.com/in/thibault-debruyne-51663320a" target="_blank"><img src="{{ url_for('static', filename='img/in.png') }}" alt="logo Linkedin" height="30"></a>
+          </div>
+        </div>	
+      </div>
+    </footer>
+
+    <script
+      src="https://maps.google.com/maps/api/js?key={{ config.google_key }}&callback=initMap&libraries=&v=weekly"
+      async
+    ></script>
+    <!-- Bootstrap JS -->
+    <script src=" {{ url_for('static', filename='js/bootstrap/bootstrap.min.js')}} "></script>
+    <script src=" {{ url_for('static', filename='js/papy.js') }} "></script>
+  </body>
+
+</html>
+
