@@ -1,6 +1,6 @@
 import requests
 import json
-from config import Wiki, Return
+from gdpy.gdpy_app.config import Wiki, Return
 import os
 
 params = {

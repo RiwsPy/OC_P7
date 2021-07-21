@@ -1,7 +1,7 @@
 import requests
 import os
 import json
-from config import Return, Google
+from gdpy.gdpy_app.config import Return, Google
 
 
 class GoogleMaps:

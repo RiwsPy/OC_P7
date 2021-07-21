@@ -4,7 +4,7 @@ from gdpy.gdpy_app.api.wikipedia import Wikipedia
 from gdpy.gdpy_app.parsers import normalize
 from gdpy.gdpy_app.words import Sentence, NO_POSITION, NO_WIKI, NO_GOOGLE, \
     NO_WIKI_INFO, I_HAVE_THE_RESPONSE
-from config import Return
+from gdpy.gdpy_app.config import Return
 from typing import Tuple
 from gdpy.website import app
 

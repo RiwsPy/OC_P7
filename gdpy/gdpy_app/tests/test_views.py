@@ -1,8 +1,8 @@
-from gdpy.views import papy_response
-from gdpy.words import NO_GOOGLE, NO_POSITION, NO_WIKI, NO_WIKI_INFO
-from gdpy.api.wikipedia import Wikipedia
-from gdpy.api.googlemaps import GoogleMaps
-from config import Return
+from website.views import papy_response
+from gdpy_app.words import NO_GOOGLE, NO_POSITION, NO_WIKI, NO_WIKI_INFO
+from gdpy_app.api.wikipedia import Wikipedia
+from gdpy_app.api.googlemaps import GoogleMaps
+from gdpy_app.config import Return
 
 def test_papy_response_no_google():
     maps_data = GoogleMaps()
