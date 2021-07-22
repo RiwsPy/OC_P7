@@ -7,7 +7,7 @@ var wikiLink = document.getElementById('wikiLink');
 var loader = document.getElementById('loader');
 
 let attr_list = ['id', 'class', 'name', 'placeholder', 'autocomplete',
-'rows', 'readonly', 'type', 'href', 'target', 'spellcheck']
+'rows', 'readonly', 'type', 'href', 'target', 'spellcheck'];
 
 function gdPy(){
     //alert('coucou1')
@@ -44,10 +44,16 @@ function gdPy(){
                             show(wikiLink);
                             new_question_block();
                 }
-                else {new_question_block();}
+                else {
+                    show(response2);
+                    new_question_block();
+                }
             //}, 3000)
         }
-        else {new_question_block();}
+        else {
+            show(response2);
+            new_question_block();
+        }
         response = createNewBlock(response);
         map = createNewBlock(map);
         response2 = createNewBlock(response2);

@@ -26,17 +26,15 @@ def api() -> jsonify:
         lat = maps_data.position['lat']
         lng = maps_data.position['lng']
 
+        result['position'] = maps_data.position
         wiki_data = Wikipedia().req(lat, lng)
         if wiki_data.return_value == Return.RETURN_OK:
             result['wiki_url'] = wiki_data.url
-            result['position'] = maps_data.position
+            print(maps_data.position)
 
-    blabla_1, blabla_2, found_place, found_wiki = \
+    result['papy_blabla_1'], result['papy_blabla_2'], \
+    result['found_place'], result['found_wiki'] = \
         papy_response(maps_data, wiki_data)
-    result['papy_blabla_1'] = blabla_1
-    result['papy_blabla_2'] = blabla_2
-    result['found_place'] = found_place
-    result['found_wiki'] = found_wiki
 
     return jsonify(result)
 
