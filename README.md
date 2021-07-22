@@ -62,18 +62,18 @@ GOOGLE_MAPS_KEY= your_key
     python main.py
 ```
 
-By default, your application is available here:
+By default, your application is available here: 
 http://127.0.0.1:5000/
 
 
 ## Program flow: online use
-This application is available in Heroku:
+This application is available in Heroku: 
 https://grandpy-in-the-sky.herokuapp.com/
 
 
 ### Architecture:
-.env
-main.py
+- .env
+- main.py
 - gdpy/
     - gdpy_app/
         - api/
