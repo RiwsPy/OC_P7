@@ -1,7 +1,7 @@
 """
     Test the module /gdpy/parsers.py
 """
-from gdpy.parsers import convert_specials_characters, remove_forbid_words
+from gdpy.gdpy_app.parsers import convert_specials_characters, remove_forbid_words
 
 
 def test_convert_specials_characters():

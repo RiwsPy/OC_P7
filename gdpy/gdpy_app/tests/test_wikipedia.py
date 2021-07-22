@@ -1,7 +1,7 @@
 import os
 import json
-from gdpy_app.config import Return, Wiki
-from gdpy_app.api.wikipedia import Wikipedia
+from gdpy.gdpy_app.config import Return, Wiki
+from gdpy.gdpy_app.api.wikipedia import Wikipedia
 import requests
 
 

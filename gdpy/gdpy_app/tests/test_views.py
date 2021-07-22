@@ -1,8 +1,8 @@
-from website.views import papy_response
-from gdpy_app.words import NO_GOOGLE, NO_POSITION, NO_WIKI, NO_WIKI_INFO
-from gdpy_app.api.wikipedia import Wikipedia
-from gdpy_app.api.googlemaps import GoogleMaps
-from gdpy_app.config import Return
+from gdpy.website.views import papy_response
+from gdpy.gdpy_app.words import NO_GOOGLE, NO_POSITION, NO_WIKI, NO_WIKI_INFO
+from gdpy.gdpy_app.api.wikipedia import Wikipedia
+from gdpy.gdpy_app.api.googlemaps import GoogleMaps
+from gdpy.gdpy_app.config import Return
 
 def test_papy_response_no_google():
     maps_data = GoogleMaps()
@@ -35,7 +35,7 @@ def test_papy_response_both_api_are_ok():
     maps_data.formatted_address = 'Paris, France'
 
     ret = papy_response(maps_data, wiki_data)
-    assert maps_data.formatted_address == ret[0]
+    assert maps_data.formatted_address in ret[0]
     assert wiki_data.blabla[:100] in ret[1]
     assert ret[2]
     assert ret[3]

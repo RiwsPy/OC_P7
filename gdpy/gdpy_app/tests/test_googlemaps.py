@@ -3,7 +3,7 @@
 """
 
 import requests
-from gdpy.api.googlemaps import GoogleMaps, Return
+from gdpy.gdpy_app.api.googlemaps import GoogleMaps, Return
 import json
 import os
 
