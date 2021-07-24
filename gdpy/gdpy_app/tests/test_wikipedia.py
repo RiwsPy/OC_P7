@@ -24,7 +24,8 @@ def requests_get(mock) -> object:
 
 
 def test_req_ok(monkeypatch):
-    with open(os.path.join(os.path.dirname(__file__)) +
+    with open(os.path.join(
+            os.path.dirname(__file__)) +
             '/mock_wiki_return_ok.json', 'r') as file:
         test_data = json.load(file)
 

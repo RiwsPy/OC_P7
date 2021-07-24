@@ -32,8 +32,9 @@ def remove_forbid_words(question: str) -> str:
     """
     fordib_words = STOP_WORDS.union(SKIP_WORDS)
 
-    normalize_question = ' '.join((word
-        for word in re.split('\W+', question.lower())
+    normalize_question = ' '.join(
+        (word
+            for word in re.split('\W+', question.lower())
             if word and word not in fordib_words))
 
     return normalize_question

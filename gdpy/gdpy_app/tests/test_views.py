@@ -4,6 +4,7 @@ from gdpy.gdpy_app.api.wikipedia import Wikipedia
 from gdpy.gdpy_app.api.googlemaps import GoogleMaps
 from gdpy.gdpy_app.config import Return
 
+
 def test_papy_response_no_google():
     maps_data = GoogleMaps()
     wiki_data = Wikipedia()
@@ -13,6 +14,7 @@ def test_papy_response_no_google():
     maps_data.return_value = Return.SERVER_ERROR
     ret = papy_response(maps_data, wiki_data)
     assert ret == (NO_GOOGLE, '', False, False)
+
 
 def test_papy_response_google_ok_but_no_wiki():
     wiki_data = Wikipedia()
@@ -25,6 +27,7 @@ def test_papy_response_google_ok_but_no_wiki():
     wiki_data.return_value = Return.NO_RETURN
     ret = papy_response(maps_data, wiki_data)
     assert ret[1:] == (NO_WIKI_INFO, True, False)
+
 
 def test_papy_response_both_api_are_ok():
     wiki_data = Wikipedia()
