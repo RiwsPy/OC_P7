@@ -51,7 +51,6 @@ function gdPy(){
             //}, 3000)
         }
         else {
-            show(response2);
             new_question_block();
         }
         response = createNewBlock(response);

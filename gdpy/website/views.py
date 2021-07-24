@@ -23,17 +23,14 @@ def api() -> jsonify:
     maps_data = GoogleMaps().req(normalize(user_input))
 
     if maps_data.return_value == Return.RETURN_OK:
-        lat = maps_data.position['lat']
-        lng = maps_data.position['lng']
-
         result['position'] = maps_data.position
-        wiki_data = Wikipedia().req(lat, lng)
+
+        wiki_data = Wikipedia().req(**maps_data.position)
         if wiki_data.return_value == Return.RETURN_OK:
             result['wiki_url'] = wiki_data.url
-            print(maps_data.position)
 
     result['papy_blabla_1'], result['papy_blabla_2'], \
-    result['found_place'], result['found_wiki'] = \
+        result['found_place'], result['found_wiki'] = \
         papy_response(maps_data, wiki_data)
 
     return jsonify(result)
