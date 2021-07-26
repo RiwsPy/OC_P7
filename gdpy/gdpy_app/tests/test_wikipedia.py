@@ -15,8 +15,10 @@ class Mock_requests:
 
 
 def requests_get(mock) -> object:
-    if mock.status_code == 200:
+    if mock.position_found:
         filename = '/mock_wiki_return_ok.json'
+    else:
+        filename = '/mock_wiki_return_no_found.json'
 
     with open(os.path.join(os.path.dirname(__file__)) + filename, 'r') as file:
         mock.text = file.read()
@@ -41,3 +43,35 @@ def test_req_ok(monkeypatch):
     assert data.return_value == Return.RETURN_OK
     assert data.url == Wiki.SEARCH_URL + "curid=5351"
     assert data.blabla == test_data['query']['pages'][0]['extract']
+
+def test_req_void(monkeypatch):
+    mock = Mock_requests(404)
+
+    def Mock_requests_get(*args, **kwargs):
+        return requests_get(mock)
+    monkeypatch.setattr(requests, 'get', Mock_requests_get)
+
+    lat = 30.3284544
+    lng = 35.4443622
+    data = Wikipedia().req(lat, lng)
+
+    assert data.return_value == Return.URL_ERROR
+
+def test_req_no_return(monkeypatch):
+    with open(os.path.join(
+            os.path.dirname(__file__)) +
+            '/mock_wiki_return_no_found.json', 'r') as file:
+        test_data = json.load(file)
+
+    mock = Mock_requests(200, position_found=False)
+
+    def Mock_requests_get(*args, **kwargs):
+        return requests_get(mock)
+    monkeypatch.setattr(requests, 'get', Mock_requests_get)
+
+    lat = 30.3284544
+    lng = 35.4443622
+    data = Wikipedia().req(lat, lng)
+    assert data.return_value == Return.NO_RETURN
+    assert data.url == ''
+

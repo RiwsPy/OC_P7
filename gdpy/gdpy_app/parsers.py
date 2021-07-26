@@ -34,7 +34,7 @@ def remove_forbid_words(question: str) -> str:
 
     normalize_question = ' '.join(
         (word
-            for word in re.split('\W+', question.lower())
+            for word in re.split('[^a-zA-Z0-9_]+', question.lower())
             if word and word not in fordib_words))
 
     return normalize_question
