@@ -1,0 +1,7 @@
+{
+    "batchcomplete":true,
+    "continue": {
+     "excontinue": 1,
+     "continue": "||"
+    }
+   }
